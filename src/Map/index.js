@@ -11,7 +11,11 @@ export default function Map() {
     const map = new mapboxgl.Map({
       container: mapContainer.current,
       style: "mapbox://styles/mapbox/streets-v11",
+      zoom: 13,
+      center: [4.899, 52.372],
     });
+    map.addControl(new mapboxgl.NavigationControl(), "bottom-right");
+    return () => map.remove();
   }, []);
   return <div className="map-container" ref={mapContainer} />;
 }
