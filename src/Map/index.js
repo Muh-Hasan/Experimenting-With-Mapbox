@@ -1,12 +1,13 @@
 import React, { useRef, useEffect } from "react";
 import mapboxgl from "mapbox-gl";
+import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import "./map.css";
 
 export default function Map() {
   const mapContainer = useRef(null);
-  mapboxgl.accessToken =
+  const token =
     "pk.eyJ1IjoibXVoLWhhc2FuIiwiYSI6ImNrZzRzNXh2dDBuZXoyc2xkMmNvbG52MjQifQ.h9QCn3uBMvqX6KCj26yNTQ";
-
+  mapboxgl.accessToken = token;
   useEffect(() => {
     const map = new mapboxgl.Map({
       container: mapContainer.current,
@@ -15,6 +16,12 @@ export default function Map() {
       center: [4.899, 52.372],
     });
     map.addControl(
+      new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        mapboxgl: mapboxgl,
+      })
+    );
+    map.addControl(
       new mapboxgl.GeolocateControl({
         positionOptions: {
           enableHighAccuracy: true,
@@ -22,11 +29,12 @@ export default function Map() {
         trackUserLocation: true,
       })
     );
-    map.on("click", (e) => {
-      new mapboxgl.Marker()
-        .setLngLat([e.lngLat.lng,e.lngLat.lat])
-        .addTo(map);
-    });
+
+    // map.on("click", (e) => {
+    //   new mapboxgl.Marker()
+    //     .setLngLat([e.lngLat.lng,e.lngLat.lat])
+    //     .addTo(map);
+    // });
     map.addControl(new mapboxgl.NavigationControl(), "bottom-right");
     return () => map.remove();
   }, []);
