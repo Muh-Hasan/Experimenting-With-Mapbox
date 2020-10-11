@@ -1,10 +1,11 @@
 import React from 'react';
 import './App.css';
+import Map from './Map/index'
 
 function App() {
   return (
     <div>
-      <h1>hello</h1>
+      <Map />
     </div>
   );
 }
