@@ -22,6 +22,11 @@ export default function Map() {
         trackUserLocation: true,
       })
     );
+    map.on("click", (e) => {
+      new mapboxgl.Marker()
+        .setLngLat([e.lngLat.lng,e.lngLat.lat])
+        .addTo(map);
+    });
     map.addControl(new mapboxgl.NavigationControl(), "bottom-right");
     return () => map.remove();
   }, []);
