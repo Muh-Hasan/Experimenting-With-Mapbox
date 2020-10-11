@@ -14,6 +14,14 @@ export default function Map() {
       zoom: 13,
       center: [4.899, 52.372],
     });
+    map.addControl(
+      new mapboxgl.GeolocateControl({
+        positionOptions: {
+          enableHighAccuracy: true,
+        },
+        trackUserLocation: true,
+      })
+    );
     map.addControl(new mapboxgl.NavigationControl(), "bottom-right");
     return () => map.remove();
   }, []);
