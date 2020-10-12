@@ -5,16 +5,9 @@
   left: 0;
   right: 0;
 }
-.mapboxgl-ctrl-geocoder {
-  border: 0;
-  border-radius: 0;
-  position: relative;
-  top: 0;
-  width: 800px;
-  margin-top: 0;
+.mapboxgl-ctrl-geocoder{
+  width: 200px;
 }
-
-.mapboxgl-ctrl-geocoder > div {
-  min-width: 100%;
-  margin-left: 0;
+.mapboxgl-ctrl-geocoder--input{
+  padding: 10px 40px 10px 32px !important;
 }
